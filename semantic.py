@@ -84,7 +84,7 @@ class semantic:
                     os.chdir(os.getcwd()+"\\"+_name)
                     config = open("light.json")
                     _json=json.loads( str(config.read()))
-                    os.system("START index.py")
+                    os.system("index.py")
                     time.sleep(2)
                     os.system("START chrome.exe http://127.0.0.1:5000/")
                     os.chdir(current)
