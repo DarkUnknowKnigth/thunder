@@ -28,7 +28,7 @@ class translator:
     def listen(self):
         while self.IS_INTERPRETING:
             self.INSTRUCTION=raw_input('thunder>')
-            self.INSTRUCTION=self.INSTRUCTION.strip()
+            self.INSTRUCTION=self.INSTRUCTION.strip() #quitar espacios
             # Sacar los tokens
             tokens=self.tokenify.tokenize(self.INSTRUCTION)
             # Agregar tokens a la tabla
@@ -42,7 +42,7 @@ class translator:
             #no hay error continuar a syntaxis
             if ok:
                 #sacar el top de instrucciones
-                tab=self.tablify.top()
+                tab=self.tablify.top() #to improve
                 #verificar validez sintactica del comando
                 if self.syntaxify.syntaxize(tab) != None:
                     self.stackify.data=self.syntaxify.syntaxize(tab)
@@ -53,12 +53,6 @@ class translator:
                     print(status[1])  
                 else:            
                     print("(X_X) invalid comand: "+' '.join(str(x[2]) for x in tab )+'\n(X_X) unknown syntaxis: '+' '.join(str(x[1]) for x in tab ))
-            
-
-                    
-
-
-
 
 c=translator()
 c.start()

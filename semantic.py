@@ -1,5 +1,8 @@
+
 import os
 import subprocess
+import json
+import time
 class semantic:
     def semanticize(self,stack):
         if stack[0]=='kgnp':
@@ -13,6 +16,26 @@ class semantic:
         elif stack[0]=='kc':
             if stack[1][1][2]=="exit" or stack[1][1][2]=="e":
                 return [False,"Exit..."]
+            if stack[1][1][2]=="init" or stack[1][1][2]=="i":
+                _name=raw_input("Please enter your project name: ")
+                if os.path.isfile(os.getcwd()+"/"+_name+"/light.json"):
+                    current=os.getcwd()
+                    os.chdir(os.getcwd()+"\\"+_name)
+                    config = open("light.json")
+                    _json=json.loads( str(config.read()))
+                    os.mkdir("route")
+                    os.mkdir("view")
+                    os.mkdir("controller")
+                    os.mkdir("model")
+                    f = open("index.py","w+")
+                    default_index="from flask import Flask\napp = Flask(__name__)\n@app.route('/')\ndef hello_world():\n\treturn 'Hello, World!'\n\napp.run()"
+                    f.write(default_index)
+                    f.close()
+                    os.chdir(current)
+                    return [True,"Initializing..."]
+                else:
+                    os.system("dir")
+                    return [True,"Can not find your config file"]
         elif stack[0]=='kgn':
             if not os.path.isdir(stack[1][2][2]):
                 os.mkdir(stack[1][2][2])
@@ -55,10 +78,17 @@ class semantic:
         elif stack[0]=='kap':
             if  (stack[1][1][2]=="serve" or stack[1][1][2]=="s") and (stack[1][2][2]=="--browser" or stack[1][2][2]=="--b"):
                 print("open app in browser")#Crear un archivo de configuracion
-                if os.path.isfile(os.getcwd()+"index.py"):
-                    os.system("Python index.py")
-                    os.system("START chrome.exe 127.0.0.0:4100")
-                    return [True,"Server starter at: 127.0.0.0:4100"]
+                _name=raw_input("Please enter your project name: ")
+                if os.path.isfile(os.getcwd()+"/"+_name+"/light.json"):
+                    current=os.getcwd()
+                    os.chdir(os.getcwd()+"\\"+_name)
+                    config = open("light.json")
+                    _json=json.loads( str(config.read()))
+                    os.system("START index.py")
+                    time.sleep(2)
+                    os.system("START chrome.exe http://127.0.0.1:5000/")
+                    os.chdir(current)
+                    return [True,"Server starter at: http://127.0.0.1:5000/"]
                 else:
                     return [True,"The file index.py not exist"]              
 
@@ -73,7 +103,7 @@ class semantic:
                 return [True,"Unknow action parameter sintax"]
 
         elif stack[0]=="ka":
-            if (stack[1][1][2]=="serve" or stack[1][1][2]=="s" ):
+            if stack[1][1][2]=="serve" or stack[1][1][2]=="s":
                 if os.path.isfile(os.getcwd()+"index.py"):
                     os.system("Python index.py")
                     return [True,"Server starter at: 127.0.0.0:4100"]
@@ -87,6 +117,57 @@ class semantic:
                 return [True,"Stopping"]
             else:
                 return [True,"Unknow action sintaxis"]
+        elif stack[0]=="kdcn":
+            if stack[1][1][2]=="add" or stack[1][1][2]=="a":
+                None
+            elif stack[1][1][2]=="make" or stack[1][1][2]=="m":
+                None
+            elif stack[1][1][2]=="delete" or stack[1][1][2]=="d":
+                None
+    def component(self,_component,_diective,_name):
+        if stack[1][1][2]=="add" or stack[1][1][2]=="a":
+        
+            if _component=='route' or _component=='ro':
+                None
+            elif _component=='view' or _component=='vw':
+                None
+            elif _component=='controller' or _component=='cn':
+                None
+            elif _component=='model' or _component=='md':
+                None
+            elif _component=='all':
+                None
+                
+        elif stack[1][1][2]=="make" or stack[1][1][2]=="m":
+            if _component=='route' or _component=='ro':
+                None
+            elif _component=='view' or _component=='vw':
+                None
+            elif _component=='controller' or _component=='cn':
+                None
+            elif _component=='model' or _component=='md':
+                None
+            elif _component=='all':
+                None
+        
+        elif stack[1][1][2]=="delete" or stack[1][1][2]=="d":
+        
+            if _component=='route' or _component=='ro':
+                None
+            elif _component=='view' or _component=='vw':
+                None
+            elif _component=='controller' or _component=='cn':
+                None
+            elif _component=='model' or _component=='md':
+                None
+            elif _component=='all':
+                None
+        else:
+            None
+        
+            
+            
+                    
 
 
 

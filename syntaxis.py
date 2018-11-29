@@ -17,7 +17,7 @@ class syntaxis:
         'kap':['key','action','parameter']
     }
     def syntaxize(self,table):
-        keys=self.valid.keys()
+        keys=self.valid.keys()#arreglo de llaves
         instruction=[]
         if len(table)>1:
             for data in table:
