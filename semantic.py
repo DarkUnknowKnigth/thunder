@@ -13,6 +13,7 @@ class semantic:
                     return [True,"Creating project in: "+stack[1][3][2]]
                 else:
                     return [True,"This project already exist: "+stack[1][3][2]]
+                    
         elif stack[0]=='kc':
             if stack[1][1][2]=="exit" or stack[1][1][2]=="e":
                 return [False,"Exit..."]
@@ -84,7 +85,7 @@ class semantic:
                     os.chdir(os.getcwd()+"\\"+_name)
                     config = open("light.json")
                     _json=json.loads( str(config.read()))
-                    os.system("index.py")
+                    os.system("START index.py")
                     time.sleep(2)
                     os.system("START chrome.exe http://127.0.0.1:5000/")
                     os.chdir(current)

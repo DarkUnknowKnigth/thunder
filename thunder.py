@@ -47,7 +47,7 @@ class translator:
                 if self.syntaxify.syntaxize(tab) != None:
                     self.stackify.data=self.syntaxify.syntaxize(tab)
                     #analizar por clave la semantica
-                    print(self.stackify.data)
+                    #print(self.stackify.data)
                     status=self.semanticfy.semanticize(self.stackify.data)
                     self.IS_INTERPRETING=status[0]
                     print(status[1])  
