@@ -12,8 +12,7 @@ class semantic:
                     os.mkdir(stack[1][2][2])
                     return [True,"Creating project in: "+stack[1][3][2]]
                 else:
-                    return [True,"This project already exist: "+stack[1][3][2]]
-                    
+                    return [True,"This project already exist: "+stack[1][3][2]] 
         elif stack[0]=='kc':
             if stack[1][1][2]=="exit" or stack[1][1][2]=="e":
                 return [False,"Exit..."]
@@ -25,7 +24,7 @@ class semantic:
                     config = open("light.json")
                     _json=json.loads( str(config.read()))
                     os.mkdir("route")
-                    os.mkdir("view")
+                    os.mkdir("template")
                     os.mkdir("controller")
                     os.mkdir("model")
                     f = open("index.py","w+")
@@ -45,6 +44,9 @@ class semantic:
                 f= open("light.json","w+")
                 config='{ "project":"'+stack[1][2][2]+'",\n"path":"'+str(os.getcwd()).replace("\\","\\\\")+'",\n"start":"index.py",\n"version":"1.0.0"\n }'
                 f.write(str(config))
+                f.close()
+                g=open(".env","w+")
+                var="PORT=5000\nHOST=127.0.0.1\n"
                 os.chdir(current)
                 return [True,"Creating project in current directory"]
             else:
