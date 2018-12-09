@@ -136,9 +136,8 @@ class semantic:
                     os.chdir(os.getcwd()+"\\"+_name)
                     config = open("light.json")
                     _json=json.loads( str(config.read()))
-                    os.system("index.py")
-                    time.sleep(2)
                     os.system("START chrome.exe http://127.0.0.1:5000/")
+                    os.system("index.py")                    
                     os.chdir(current)
                     return [True,"Server starter at: http://127.0.0.1:5000/"]
                 else:

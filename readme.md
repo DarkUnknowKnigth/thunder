@@ -55,6 +55,18 @@ $ t --browser
 
 $ t --version
 ```
+##Getting Starter
+### Create a project
+You can use thunder new <name> to create projects
+*thunder new superApp*
+After that you have to initializate your project with
+*thunder init*
+then write your project name
+Please enter your project name: *superApp*
+and finally just serve the app and enjoy
+*thunder serve --browser*
+
+
 License
 ----
 
