@@ -1,0 +1,13 @@
+class controller:
+    def get():
+        #get datta
+        return 'data'
+    def post():
+        #post data
+        return 'data'
+    def put():
+        #put data
+        return 'data'
+    def delete():
+        #delete data
+        return 'data'

@@ -23,12 +23,59 @@ class semantic:
                     os.chdir(os.getcwd()+"\\"+_name)
                     config = open("light.json")
                     _json=json.loads( str(config.read()))
-                    os.mkdir("route")
-                    os.mkdir("template")
-                    os.mkdir("controller")
-                    os.mkdir("model")
+                    #route
+                    f=open("route.py","w+")
+                    h=open("__init__.py","w+")
+                    h.close()
+                    g=open(current+'/temp/route.py')
+                    def_rot=g.read()
+                    g.close()
+                    f.write(def_rot)
+                    f.close()
+                    #TEMPLATEs
+                    try:
+                        os.mkdir("templates")
+                        _current=os.getcwd()
+                        os.chdir(os.getcwd()+"\\templates")
+                        f=open("view.html","w+")
+                        g=open(current+'/temp/view.html')
+                        def_rot=g.read()
+                        g.close()
+                        f.write(def_rot)
+                        f.close()
+                        os.chdir(_current)
+                    except:
+                        print("Your template had already initializate")
+                        _current=os.getcwd()
+                        os.chdir(os.getcwd()+"\\templates")
+                        f=open("view.html","w+")
+                        g=open(current+'/temp/view.html')
+                        def_rot=g.read()
+                        g.close()
+                        f.write(def_rot)
+                        f.close()
+                        os.chdir(_current)
+                    #CONTROLLER
+                    f=open("controller.py","w+")
+                    g=open(current+'/temp/controller.py')
+                    def_rot=g.read()
+                    g.close()
+                    f.write(def_rot)
+                    f.close()
+                   
+                    #MODEL  
+                    f=open("model.py","w+")
+                    g=open(current+'/temp/model.py')
+                    def_rot=g.read()
+                    g.close()
+                    f.write(def_rot)
+                    f.close()
+                    
+                    #INDEX
                     f = open("index.py","w+")
-                    default_index="from flask import Flask\napp = Flask(__name__)\n@app.route('/')\ndef hello_world():\n\treturn 'Hello, World!'\n\napp.run()"
+                    g = open (current+'/temp/index.py','r')
+                    default_index = g.read()
+                    g.close()
                     f.write(default_index)
                     f.close()
                     os.chdir(current)
@@ -47,6 +94,8 @@ class semantic:
                 f.close()
                 g=open(".env","w+")
                 var="PORT=5000\nHOST=127.0.0.1\n"
+                g.write(str(var))
+                g.close()
                 os.chdir(current)
                 return [True,"Creating project in current directory"]
             else:
@@ -87,7 +136,7 @@ class semantic:
                     os.chdir(os.getcwd()+"\\"+_name)
                     config = open("light.json")
                     _json=json.loads( str(config.read()))
-                    os.system("START index.py")
+                    os.system("index.py")
                     time.sleep(2)
                     os.system("START chrome.exe http://127.0.0.1:5000/")
                     os.chdir(current)

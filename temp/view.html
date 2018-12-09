@@ -5,16 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Thunder</title>
 </head>
 
 <body>
-    <title>{% block title %}{% endblock %}</title>
-    <ul>
-        {% for user in users %}
-        <li><a href="{{ user.url }}">{{ user.username }}</a></li>
-        {% endfor %}
-    </ul>
+    <header>
+        <nav>
+            <h1>Thunder - Flask</h1>
+            <ul id="navigation">
+                {% for item in nav %}
+                <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>YOUR APP WORKS lml</h1>
+    </main>
+    <footer>
+        <h4>This app was created with Flask,Jinja2 and Thunder</h4>
+    </footer>
+
+
 </body>
 
 </html>
