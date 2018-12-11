@@ -170,7 +170,7 @@ class semantic:
                 return [True,"Unknow action sintaxis"]
         elif stack[0]=="kdcn":
             if stack[1][1][2]=="add" or stack[1][1][2]=="a":
-                None
+                print ("none xD")
             elif stack[1][1][2]=="make" or stack[1][1][2]=="m":
                 None
             elif stack[1][1][2]=="delete" or stack[1][1][2]=="d":
