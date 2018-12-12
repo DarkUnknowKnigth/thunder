@@ -170,7 +170,21 @@ class semantic:
                 return [True,"Unknow action sintaxis"]
         elif stack[0]=="kdcn":
             if stack[1][1][2]=="add" or stack[1][1][2]=="a":
-                print ("none xD")
+                xname = raw_input("please enter your project name: ")
+                current = os.getcwd()
+                path = current +"\\"+ xname
+                name = stack[1][3][2]
+                directive = stack[1][2][2] #name of directive 
+                if(directive == "route"):                
+                    if os.path.isdir(path) and os.path.isfile(path+"\\route.py"):
+                        #xd
+                        newRoute = open(path + "\\route.py", "a")
+                        addLines = ["\n\n@app.route( '" + name + "' )", "\ndef " + name +"()", "\n\treturn " + name ]
+                        newRoute.writelines(addLines)
+                        newRoute.close() 
+                        print "we're inside the route bro"
+                return [True,"route is added..."]
+
             elif stack[1][1][2]=="make" or stack[1][1][2]=="m":
                 None
             elif stack[1][1][2]=="delete" or stack[1][1][2]=="d":
