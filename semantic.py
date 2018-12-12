@@ -174,15 +174,36 @@ class semantic:
                 current = os.getcwd()
                 path = current +"\\"+ xname
                 name = stack[1][3][2]
-                directive = stack[1][2][2] #name of directive 
-                if(directive == "route"):                
+                component = stack[1][2][2] #name of component 
+                if(component == "route"):                
                     if os.path.isdir(path) and os.path.isfile(path+"\\route.py"):
                         #xd
                         newRoute = open(path + "\\route.py", "a")
-                        addLines = ["\n\n@app.route( '" + name + "' )", "\ndef " + name +"()", "\n\treturn " + name ]
+                        addLines = ["\n\n@app.route( '/" + name + "', methods=['GET'] )", "\ndef " + name +"():", "\n\treturn '" + name +"'" ]
                         newRoute.writelines(addLines)
                         newRoute.close() 
                         print "we're inside the route bro"
+                elif(component == "model"):
+                    if os.path.isdir(path) and os.path.isfile(path+"\\model.py"):
+                        newModel = open(path + "\\model.py", "a")
+                        addLines = ["\n\nclass "+ name + ":", "\n\tname ='yourname' "]
+                        newModel.writelines(addLines)
+                        newModel.close()
+                        print("new model was added")
+                elif(component == 'controller' or component=='cn'):
+                    if os.path.isdir(path) and os.path.isfile(path+"\\controller.py"):
+                        newController = open(path + "\\controller.py", "a")
+                        addLines = ["\n\tdef "+ name + "():", "\n\t\treturn 'data'"]
+                        newController.writelines(addLines)
+                        newController.close()
+                        print("new controller was added")
+                elif(component == 'view' or component=='vw'):
+                    if os.path.isdir(path):
+                        newVW = open(path+"\\templates\\" + name +".html", "w")
+                        addLines = name
+                        newVW.writelines(addLines)
+                        newVW.close()
+                        print("new view was added")
                 return [True,"route is added..."]
 
             elif stack[1][1][2]=="make" or stack[1][1][2]=="m":
