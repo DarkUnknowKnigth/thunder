@@ -1,5 +1,6 @@
 
 import os
+import shutil as sh
 import subprocess
 import json
 import time
@@ -18,6 +19,9 @@ class semantic:
                 return [False,"Exit..."]
             if stack[1][1][2]=="init" or stack[1][1][2]=="i":
                 _name=raw_input("Please enter your project name: ")
+                directory = os.getcwd() +"\\"+ _name
+
+
                 if os.path.isfile(os.getcwd()+"/"+_name+"/light.json"):
                     current=os.getcwd()
                     os.chdir(os.getcwd()+"\\"+_name)
@@ -33,8 +37,11 @@ class semantic:
                     f.write(def_rot)
                     f.close()
                     #TEMPLATEs
-                    try:
-                        os.mkdir("templates")
+                    try:               
+                        dirToStatic = current + "\\temp\\static"
+                        dirToCopy = current + "\\temp\\templates"         
+                        sh.copytree(dirToStatic, directory + "\\static")
+                        sh.copytree(dirToCopy, directory + "\\templates")
                         _current=os.getcwd()
                         os.chdir(os.getcwd()+"\\templates")
                         f=open("view.html","w+")
@@ -45,6 +52,9 @@ class semantic:
                         f.close()
                         os.chdir(_current)
                     except:
+                        print current
+                        print directory  
+                        #os.system("xcopy "+ current +"\\temp\\templates " + directory + "\\templates")
                         print("Your template had already initializate")
                         _current=os.getcwd()
                         os.chdir(os.getcwd()+"\\templates")
