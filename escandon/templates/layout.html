@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mdl.css') }}">
+    <script defer src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/material.orange-amber.css') }}">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Material Design Lite</title>
+    <title>Thunder</title>
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+            <h3>Welcome to Flask with Thunder</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+    </header>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <div class="android-header mdl-layout__header mdl-layout__header--waterfall mdl-color--primary-dark">
+            <div class="mdl-layout__header-row">
+                <!--
+                <span class="android-title mdl-layout-title">
+                            <img class="android-logo-image" src="{{url_for('static', filename = 'images/flask-name_.png')}}">
+                          </span> -->
+                <!-- Add spacer, to align navigation to the right in desktop -->
+                <div class="android-header-spacer mdl-layout-spacer"></div>
+                <!-- Navigation -->
+                <div class="android-navigation-container">
+                    <nav class="android-navigation mdl-navigation">
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Getting</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Command</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Source</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Material</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">MVC</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">CLI</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About</a>
+                    </nav>
+                </div>
+                <!--
+                <span class="android-mobile-title mdl-layout-title">
+                        <img class="android-logo-image" src="{{url_for('static', filename = 'images/flask-name_.png')}}">
+                      </span> -->
+
+                <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+                    <li class="mdl-menu__item">5.0 Lollipop</li>
+                    <li class="mdl-menu__item">4.4 KitKat</li>
+                    <li disabled class="mdl-menu__item">4.3 Jelly Bean</li>
+                    <li class="mdl-menu__item">Android History</li>
+                </ul>
+                <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+                        <i class="material-icons">more_vert</i>
+                      </button>
+            </div>
+
+        </div>
+
+        <div class="android-drawer mdl-layout__drawer">
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Getting</a>
+                <a class="mdl-navigation__link" href="">Command</a>
+                <a class="mdl-navigation__link" href="">Source</a>
+                <a class="mdl-navigation__link" href="">Material</a>
+                <a class="mdl-navigation__link" href="">CLI</a>
+                <a class="mdl-navigation__link" href="">About</a>
+
+                <div class="android-drawer-separator"></div>
+                <span class="mdl-navigation__link" href="">Versions</span>
+                <a class="mdl-navigation__link" href="">Lollipop 5.0</a>
+                <a class="mdl-navigation__link" href="">KitKat 4.4</a>
+                <a class="mdl-navigation__link" href="">Jelly Bean 4.3</a>
+                <a class="mdl-navigation__link" href="">Android history</a>
+                <div class="android-drawer-separator"></div>
+                <span class="mdl-navigation__link" href="">Resources</span>
+                <a class="mdl-navigation__link" href="">Official blog</a>
+                <a class="mdl-navigation__link" href="">Android on Google+</a>
+                <a class="mdl-navigation__link" href="">Android on Twitter</a>
+                <div class="android-drawer-separator"></div>
+                <span class="mdl-navigation__link" href="">For developers</span>
+                <a class="mdl-navigation__link" href="">App developer resources</a>
+                <a class="mdl-navigation__link" href="">Android Open Source Project</a>
+                <a class="mdl-navigation__link" href="">github</a>
+
+            </nav>
+        </div>
+
+        <main class="mdl-layout__content ">
+        </main>
+    </div>
+
+    <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/text-only/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--primary-dark mdl-color-text--accent-contrast">View Source</a>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+
+</html>
