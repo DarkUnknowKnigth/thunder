@@ -14,9 +14,9 @@ class semantic:
                 os.chdir(stack[1][3][2])
                 if not os.path.isdir(stack[1][3][2]+"/"+stack[1][2][2]):
                     os.mkdir(stack[1][2][2])
-                    return [True,"Creating project in: "+stack[1][3][2]]
+                    return [True,Fore.CYAN+"Creating project in: "+stack[1][3][2]]
                 else:
-                    return [True,"This project already exist: "+stack[1][3][2]] 
+                    return [True,Fore.RED+"This project already exist: "+stack[1][3][2]] 
         elif stack[0]=='kc':
             if stack[1][1][2]=="exit" or stack[1][1][2]=="e":
                 return [False,"Exit..."]
@@ -92,10 +92,10 @@ class semantic:
                     f.write(default_index)
                     f.close()
                     os.chdir(current)
-                    return [True,"Initializing..."]
+                    return [True,Fore.WHITE+"Initializing..."]
                 else:
                     os.system("dir")
-                    return [True,"Can not find your config file"]
+                    return [True,Fore.RED+"Can not find your config file"]
         elif stack[0]=='kgn':
             if not os.path.isdir(stack[1][2][2]):
                 os.mkdir(stack[1][2][2])
@@ -110,33 +110,33 @@ class semantic:
                 g.write(str(var))
                 g.close()
                 os.chdir(current)
-                return [True,"Creating project in current directory"]
+                return [True,Fore.GREEN+"(+_+) Creating project in current directory"]
             else:
-                return [True,"This project already exist: "+stack[1][2][2]]
+                return [True,Fore.YELLOW+"(X_X) This project already exist: "+stack[1][2][2]]
         elif stack[0]=='kp':
             if stack[1][1][2]=="--version":
                 #print subprocess.Popen("Flask --version", shell=False, stdout=subprocess.PIPE).stdout.read()
                 print( Back.BLUE +  Fore.BLACK +"Flask 1.0")
                 #print("Thunder 0.0.1")
-                return [True, Fore.YELLOW + "Thunder 0.0.1"]
+                return [True, Fore.YELLOW + "Thunder 1.0.1"]
             elif stack[1][1][2]=="--v":
                 print( Back.BLUE +  Fore.BLACK +"Flask 1.0")
                 #print("Thunder 0.0.1")
-                return [True, Fore.YELLOW + "Thunder 0.0.1"]
+                return [True, Fore.YELLOW + "Thunder 1.0.1"]
             elif stack[1][1][2]=="--help":
                 print("INSTRUCTIONS...")
                 helper = os.getcwd() + "\\temp\\help\\instruccion.md"
                 file = open(helper, "r")
                 for line in file:
                     print Fore.BLUE + line
-                return [True,"x-x-x-x-x-x-x-x-x-x"]
+                return [True,"..."]
             elif stack[1][1][2]=="--h":
                 print("INSTRUCTIONS...")
                 helper = os.getcwd() + "\\temp\\help\\instruccion.md"
                 file = open(helper, "r")
                 for line in file:
                     print Fore.BLUE + line
-                return [True,"x-x-x-x-x-x-x-x-x-x"]
+                return [True,"..."]
             else:
                 return [True, Fore.RED + "Unknow parameter"]
         elif stack[0]=='kdp':
@@ -147,7 +147,7 @@ class semantic:
                         file = open(helper, "r")
                         for line in file:
                             print Fore.BLUE + line
-                        return [True,"x-x-x-x-x-x-x-x-x-x"]
+                        return [True,"..."]
                     elif(stack[1][1][2] == "make"):
                         print("INSTRUCTIONS...")
                         helper = os.getcwd() + "\\temp\\help\\make.md"
@@ -161,7 +161,7 @@ class semantic:
                         file = open(helper, "r")
                         for line in file:
                             print Fore.BLUE + line
-                        return [True,"."]
+                        return [True,"..."]
             else:
                 return [True,"Unknow parameter"]
         elif stack[0]=='kap':
@@ -176,7 +176,7 @@ class semantic:
                     os.system("START chrome.exe http://127.0.0.1:5000/")
                     os.system("index.py")                    
                     os.chdir(current)
-                    return [True,"Server starter at: http://127.0.0.1:5000/"]
+                    return [True,Fore.BLACK+Back.YELLOW+"Server starter at: http://127.0.0.1:5000/"]
                 else:
                     return [True,"The file index.py not exist"]              
 
@@ -192,9 +192,15 @@ class semantic:
 
         elif stack[0]=="ka":
             if stack[1][1][2]=="serve" or stack[1][1][2]=="s":
-                if os.path.isfile(os.getcwd()+"index.py"):
-                    os.system("Python index.py")
-                    return [True,"Server starter at: 127.0.0.0:4100"]
+                _name=raw_input("Please enter your project name: ")
+                if os.path.isfile(os.getcwd()+"/"+_name+"/light.json"):
+                    current=os.getcwd()
+                    os.chdir(os.getcwd()+"\\"+_name)
+                    config = open("light.json")
+                    _json=json.loads( str(config.read()))
+                    os.system("index.py")                    
+                    os.chdir(current)
+                    return [True,Fore.BLACK+Back.YELLOW+"Server starter at: http://127.0.0.1:5000/"]
                 else:
                     return [True,"The file index.py not exist"]
             elif stack[1][1][2]=="reset" or stack[1][1][2]=="rs":
@@ -362,48 +368,6 @@ class semantic:
                 else:
                     return [True, Fore.RED + "(x.X) Your Dir " + name + " does't exist"]
 
-                
-    def component(self,_component,_diective,_name):
-        if stack[1][1][2]=="add" or stack[1][1][2]=="a":
-        
-            if _component=='route' or _component=='ro':
-                None
-            elif _component=='view' or _component=='vw':
-                None
-            elif _component=='controller' or _component=='cn':
-                None
-            elif _component=='model' or _component=='md':
-                None
-            elif _component=='all':
-                None
-                
-        elif stack[1][1][2]=="make" or stack[1][1][2]=="m":
-            if _component=='route' or _component=='ro':
-                return [True, "is running"]
-            elif _component=='view' or _component=='vw':
-                None
-            elif _component=='controller' or _component=='cn':
-                None
-            elif _component=='model' or _component=='md':
-                None
-            elif _component=='all':
-                None
-        
-        elif stack[1][1][2]=="delete" or stack[1][1][2]=="d":
-        
-            if _component=='route' or _component=='ro':
-                None
-            elif _component=='view' or _component=='vw':
-                None
-            elif _component=='controller' or _component=='cn':
-                None
-            elif _component=='model' or _component=='md':
-                None
-            elif _component=='all':
-                None
-        else:
-            None
-        return [True, "Ok"]
         
             
             
