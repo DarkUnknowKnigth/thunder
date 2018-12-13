@@ -1,3 +1,0 @@
-class controller_houston
-	def get():
-	return 'data'
