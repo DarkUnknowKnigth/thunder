@@ -299,7 +299,7 @@ class semantic:
                 elif component=='all':
                     if os.path.isdir(path):
                         newVW = open(path+"\\templates\\" + name +".html", "w")
-                        newController = open(path + "\\controller_" + name, "w")
+                        newController = open(path + "\\controller_" + name+".py", "w")
                         newModel = open(path + "\\model_" + name + ".py", "w")
                         #newRoute = open(path + "\\route_" + name +".py", "w")
                         #addLines = ["\n\n@app.route( '/" + name + "', methods=['GET'] )", "\ndef " + name +"():", "\n\treturn render_template('" + name +".html" +"')" ]
@@ -335,14 +335,30 @@ class semantic:
                         else:
                             return [True, Fore.RED + "(x.X) Your file " + name + " does't exist"]
                     elif(directive == "model" or directive == "ro"):
-                        os.remove(path + "model_"+ "\\"+name+".py")
-                        return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                            if(os.path.isfile(path+"\\"+name+".py")):
+                                os.remove(path + "\\model_"+ "\\"+name+".py")
+                                return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                            else:
+                             return [True, Fore.RED + "(x.X) Your file " + name + " does't exist"]
                     elif(directive == "controller" or directive == "cn"):
-                        os.remove(path + "controller_"+ "\\"+name+".py")
-                        return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                        if(os.path.isfile(path+"\\"+name+".py")):
+                            os.remove(path + "\\controller_"+ "\\"+name+".py")
+                            return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                        else:
+                            return [True, Fore.RED + "(x.X) Your file " + name + " does't exist"]
                     elif(directive == "all"):
-                        os.remove(path +  "\\"+name+".py")
-                        return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                        temp = path+"\\templates\\"+name+".html"
+                        mod = path+"\\model_"+name+".py"
+                        cont = path+"\\controller_"+name+".py"
+                        print temp+"\n"+mod+"\n"+cont
+                        
+                        if(os.path.isfile(temp) and os.path.isfile(mod) and os.path.isfile(cont)):
+                            os.remove(temp)
+                            os.remove(mod)
+                            os.remove(cont)
+                            return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                        else:
+                            return [True, Fore.RED + "(x.X) Your file " + name + " does't exist"]
                 else:
                     return [True, Fore.RED + "(x.X) Your Dir " + name + " does't exist"]
 
