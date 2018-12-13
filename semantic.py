@@ -125,6 +125,10 @@ class semantic:
                 return [True, Fore.YELLOW + "Thunder 0.0.1"]
             elif stack[1][1][2]=="--help":
                 print("INSTRUCTIONS...")
+                helper = os.getcwd() + "\\temp\\help\\instruccion.md"
+                file = open(helper, "r")
+                for line in file:
+                    print Fore.BLUE + line
                 return [True,"x-x-x-x-x-x-x-x-x-x"]
             elif stack[1][1][2]=="--h":
                 print("INSTRUCTIONS...")
@@ -136,16 +140,28 @@ class semantic:
             else:
                 return [True, Fore.RED + "Unknow parameter"]
         elif stack[0]=='kdp':
-            if stack[1][2][2]=="--help":
-                print("INSTRUCTIONS...")
-                helper = os.getcwd() + "\\temp\\help\\instruccion.md"
-                file = open(helper, "r")
-                for line in file:
-                    print Fore.BLUE + line
-                return [True,"x-x-x-x-x-x-x-x-x-x"]
-            elif stack[1][2][2]=="--h":
-                print("INSTRUCTIONS...")
-                return [True,"x-x-x-x-x-x-x-x-x-x"]
+            if stack[1][2][2]=="--help" or stack[1][2][2]=="--h":
+                    if(stack[1][1][2] == "add"):
+                        print("INSTRUCTIONS...")
+                        helper = os.getcwd() + "\\temp\\help\\add.md"
+                        file = open(helper, "r")
+                        for line in file:
+                            print Fore.BLUE + line
+                        return [True,"x-x-x-x-x-x-x-x-x-x"]
+                    elif(stack[1][1][2] == "make"):
+                        print("INSTRUCTIONS...")
+                        helper = os.getcwd() + "\\temp\\help\\make.md"
+                        file = open(helper, "r")
+                        for line in file:
+                            print Fore.BLUE + line
+                        return [True,"."]
+                    elif(stack[1][1][2] == "delete"):
+                        print("INSTRUCTIONS...")
+                        helper = os.getcwd() + "\\temp\\help\\delete.md"
+                        file = open(helper, "r")
+                        for line in file:
+                            print Fore.BLUE + line
+                        return [True,"."]
             else:
                 return [True,"Unknow parameter"]
         elif stack[0]=='kap':
@@ -304,7 +320,29 @@ class semantic:
                 return [True, "is running make"]
 
             elif stack[1][1][2]=="delete" or stack[1][1][2]=="d":
-                None
+                xname = raw_input("please enter your project name: ")
+                current = os.getcwd()
+                path = current +"\\"+ xname
+                directive = stack[1][2][2]
+                name  = stack[1][3][2]
+                filename = path +  "\\"+name+".py"
+                if(os.path.isfile(filename)):
+                    if(directive == "view" or directive == "vw"):
+                        os.remove(path+"\\templates\\"+name+".html")
+                        return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                    elif(directive == "model" or directive == "ro"):
+                        os.remove(path +  "\\"+name+".py")
+                        return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                    elif(directive == "controller" or directive == "cn"):
+                        os.remove(path +  "\\"+name+".py")
+                        return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                    elif(directive == "all"):
+                        os.remove(path +  "\\"+name+".py")
+                        return [True, Fore.RED +  " [-] "+ Fore.RESET + Fore.GREEN + name +" was be removed"]
+                else:
+                    return [True, Fore.RED + "(x.X) Your file " + name + " does't exist"]
+
+                
     def component(self,_component,_diective,_name):
         if stack[1][1][2]=="add" or stack[1][1][2]=="a":
         
