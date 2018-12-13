@@ -2,6 +2,8 @@ import token as t
 import table as tab
 import syntaxis as s
 import semantic as sem
+from colorama import init, Fore, Back, Style
+init(autoreset=True)
 class translator:
     INSTRUCTION=""
     tokenify=t.token()
@@ -11,7 +13,7 @@ class translator:
     semanticfy=sem.semantic()
     IS_INTERPRETING=True
     def start(self):
-        print(
+        print(Fore.GREEN + 
             "    ___(                     )\n"+
             "   (      THUNDER-flask      _)\n"+
             "  (_                       __)\n"+
@@ -27,7 +29,7 @@ class translator:
             "/'\n")
     def listen(self):
         while self.IS_INTERPRETING:
-            self.INSTRUCTION=raw_input('thunder>')
+            self.INSTRUCTION=raw_input(Fore.MAGENTA + 'thunder>')
             self.INSTRUCTION=self.INSTRUCTION.strip() #quitar espacios
             # Sacar los tokens
             tokens=self.tokenify.tokenize(self.INSTRUCTION)
@@ -35,7 +37,7 @@ class translator:
             ok=True #variable validadora de errores
             for token in tokens:
                 if(token[1]=="error"):
-                    print("(X_X)Invalid Token: "+token[2]+" in index "+str(token[0]))
+                    print(Fore.CYAN + "(X_X)Invalid Token: "+token[2]+" in index "+str(token[0]))
                     ok=False #informar de error
                 else:
                     self.tablify.add(token)
@@ -52,7 +54,7 @@ class translator:
                     self.IS_INTERPRETING=status[0]
                     print(status[1])  
                 else:            
-                    print("(X_X) invalid comand: "+' '.join(str(x[2]) for x in tab )+'\n(X_X) unknown syntaxis: '+' '.join(str(x[1]) for x in tab ))
+                    print( Fore.RED + "(X_X) invalid comand: "+' '.join(str(x[2]) for x in tab )+'\n(X_X) unknown syntaxis: '+' '.join(str(x[1]) for x in tab ))
 
 c=translator()
 c.start()

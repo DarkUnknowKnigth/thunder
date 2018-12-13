@@ -30,3 +30,75 @@ def escandon():
 def view():
     
     return render_template('view.html',nav=navigation.values(),card=cards)
+
+@app.route( '/y', methods=['GET'] )
+def y():
+	return render_template('y.html')
+
+@app.route( '/houston', methods=['GET'] )
+def houston():
+	return render_template('houston.html')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/ass', methods=['GET'] )
+def ass():
+	return render_template('ass')
+
+@app.route( '/ass', methods=['GET'] )
+def ass():
+	return render_template('ass')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')
+
+@app.route( '/card', methods=['GET'] )
+def card():
+	return render_template('card')

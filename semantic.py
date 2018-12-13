@@ -4,6 +4,9 @@ import shutil as sh
 import subprocess
 import json
 import time
+from colorama import init, Fore, Back, Style
+init(autoreset=True)
+ 
 class semantic:
     def semanticize(self,stack):
         if stack[0]=='kgnp':
@@ -185,39 +188,113 @@ class semantic:
                 path = current +"\\"+ xname
                 name = stack[1][3][2]
                 component = stack[1][2][2] #name of component 
-                if(component == "route"):                
+                if(component == "route" or component == "ro"):                
                     if os.path.isdir(path) and os.path.isfile(path+"\\route.py"):
                         #xd
                         newRoute = open(path + "\\route.py", "a")
-                        addLines = ["\n\n@app.route( '/" + name + "', methods=['GET'] )", "\ndef " + name +"():", "\n\treturn '" + name +"'" ]
+                        addLines = ["\n\n@app.route( '/" + name + "', methods=['GET'] )", "\ndef " + name +"():", "\n\treturn render_template('" + name +"')" ]
                         newRoute.writelines(addLines)
                         newRoute.close() 
-                        print "we're inside the route bro"
-                elif(component == "model"):
+                        
+                        return [True,  Fore.GREEN + Style.DIM + "*** new "+ component + " - " + name + " is added"]
+                    else:
+                        
+                        return [True, Fore.RED +"(x_X) your project with the name: " + Back.YELLOW + xname  + Back.RESET + Fore.RED + " doest'n exist"]
+                elif(component == "model" or component == "md"):
                     if os.path.isdir(path) and os.path.isfile(path+"\\model.py"):
                         newModel = open(path + "\\model.py", "a")
                         addLines = ["\n\nclass "+ name + ":", "\n\tname ='yourname' "]
                         newModel.writelines(addLines)
                         newModel.close()
-                        print("new model was added")
+                        return [True, "*** new "+ component + " - " + name + " is added"]
+                    else:
+                        return [True, Fore.RED +"(x_X) your project with the name: " + Back.YELLOW + xname  + Back.RESET + Fore.RED + " doest'n exist"]
                 elif(component == 'controller' or component=='cn'):
                     if os.path.isdir(path) and os.path.isfile(path+"\\controller.py"):
                         newController = open(path + "\\controller.py", "a")
                         addLines = ["\n\tdef "+ name + "():", "\n\t\treturn 'data'"]
                         newController.writelines(addLines)
                         newController.close()
-                        print("new controller was added")
+                        return [True, "*** new "+ component + " - " + name + " is added"]
+                    else:
+                        return [True, Fore.RED +"(x_X) your project with the name: " + Back.YELLOW + xname  + Back.RESET + Fore.RED + " doest'n exist"]
                 elif(component == 'view' or component=='vw'):
-                    if os.path.isdir(path):
-                        newVW = open(path+"\\templates\\" + name +".html", "w")
-                        addLines = name
-                        newVW.writelines(addLines)
-                        newVW.close()
-                        print("new view was added")
-                return [True,"route is added..."]
+                    #if os.path.isdir(path):
+                        #newVW = open(path+"\\templates\\" + name +".html", "w")
+                        #addLines = ["{% extends 'base.html'%}", "\n{% block text %}", "\n"+name, " is working \n{% endblock %}"]
+                        #newVW.writelines(addLines)
+                        #newVW.close()
+                    return [True, Fore.LIGHTCYAN_EX + "(o.0) you can't add views, just make views"]
+                    #else:
+                    #    return [True, Fore.RED +"(x_X) your project with the name: " + Back.YELLOW + xname  + Back.RESET + Fore.RED + " doest'n exist"]
+                return [True,"."]
 
             elif stack[1][1][2]=="make" or stack[1][1][2]=="m":
-                None
+                xname = raw_input("please enter your project name: ")
+                current = os.getcwd()
+                path = current +"\\"+ xname
+                component = stack[1][2][2]
+                directive = stack[1][1][2]
+                name  = stack[1][3][2]
+                if component=='route' or component=='ro':
+                    #if os.path.isdir(path) and os.path.isfile(path+"\\route.py"):
+                        #newRoute = open(path + "\\"+ name +".route.py", "w")
+                        #addLines = ["\n\n@app.route( '/" + name + "', methods=['GET'] )", "\ndef " + name +"():", "\n\treturn '" + name +"'" ]
+                        #newRoute.writelines(addLines)
+                        #newRoute.close() 
+                        #print "we're inside the route bro"
+                    return [True, Fore.RED + "(x_X) This fuction can't do it with Thunder. "]
+                elif component=='view' or component=='vw':
+
+                    if os.path.isdir(path):
+                        newVW = open(path+"\\templates\\" + name +".html", "w")
+                        addLines = ["{% extends 'base.html'%}", "\n{% block text %}", "\n"+name, " is working \n{% endblock %}"]
+                        newVW.writelines(addLines)
+                        newVW.close()
+                        return [True, "new view - " + name + " is maked"]
+                    else:
+                        return [True, Fore.RED +"(x_X) your project with the name: " + Back.YELLOW + xname  + Back.RESET + Fore.RED + " doest'n exist"]
+                elif component=='controller' or component=='cn':
+                    if os.path.isdir(path):
+                        newController = open(path + "\\controller_" + name, "w")
+                        addLines = ["class controller_" + name, "\n\tdef get():", "\n\treturn 'data'"]
+                        newController.writelines(addLines)
+                        newController.close()
+                        return [True, "new controller - " + name + " is maked"]
+                    else:
+                        return [True, Fore.RED +"(x_X) your project with the name: " + Back.YELLOW + xname  + Back.RESET + Fore.RED + " doest'n exist"]
+                elif component=='model' or component=='md':
+                    if os.path.isdir(path):
+                        newModel = open(path + "\\model_" + name + ".py", "w")
+                        addLines = ["class " + name, "\n\tid=0", "\n\tname=''"]
+                        newModel.writelines(addLines)
+                        newModel.close()
+                        return [True, "new model - " + name + " is maked"]
+                    else:
+                        return [True, Fore.RED +"(x_X) your project with the name: " + Back.YELLOW + xname  + Back.RESET + Fore.RED + " doest'n exist"]
+                elif component=='all':
+                    if os.path.isdir(path):
+                        newVW = open(path+"\\templates\\" + name +".html", "w")
+                        newController = open(path + "\\controller_" + name, "w")
+                        newModel = open(path + "\\model_" + name + ".py", "w")
+                        newRoute = open(path + "\\route_" + name +".py", "w")
+                        addLines = ["\n\n@app.route( '/" + name + "', methods=['GET'] )", "\ndef " + name +"():", "\n\treturn render_template('" + name +".html" +"')" ]
+                        newRoute.writelines(addLines)
+                        addLines = ["{% extends 'base.html'%}", "\n{% block text %}", "\n"+name, " is working \n{% endblock %}"]
+                        newVW.writelines(addLines)
+                        newVW.close()
+                        addLines = ["class controller_" + name, "\n\tdef get():", "\n\treturn 'data'"]
+                        newController.writelines(addLines)
+                        newController.close()
+                        addLines = ["class " + name, "\n\tid=0", "\n\tname=''"]
+                        newModel.writelines(addLines)
+                        newModel.close()
+                        return [True, "new " + name + " is added"]
+                    else:
+                        return [True, Fore.RED +"(x_X) your project with the name: " + Back.YELLOW + xname  + Back.RESET + Fore.RED + " doest'n exist"]
+
+                return [True, "is running make"]
+
             elif stack[1][1][2]=="delete" or stack[1][1][2]=="d":
                 None
     def component(self,_component,_diective,_name):
@@ -236,7 +313,7 @@ class semantic:
                 
         elif stack[1][1][2]=="make" or stack[1][1][2]=="m":
             if _component=='route' or _component=='ro':
-                None
+                return [True, "is running"]
             elif _component=='view' or _component=='vw':
                 None
             elif _component=='controller' or _component=='cn':
@@ -260,6 +337,7 @@ class semantic:
                 None
         else:
             None
+        return [True, "Ok"]
         
             
             
