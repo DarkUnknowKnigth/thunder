@@ -116,24 +116,32 @@ class semantic:
         elif stack[0]=='kp':
             if stack[1][1][2]=="--version":
                 #print subprocess.Popen("Flask --version", shell=False, stdout=subprocess.PIPE).stdout.read()
-                print("Flask 1.0")
-                print("Thunder 0.0.1")
-                return [True,"x-x-x-x-x-x-x-x-x-x"]
+                print( Back.BLUE +  Fore.BLACK +"Flask 1.0")
+                #print("Thunder 0.0.1")
+                return [True, Fore.YELLOW + "Thunder 0.0.1"]
             elif stack[1][1][2]=="--v":
-                print("Flask 1.0")
-                print("Thunder 0.0.1")
-                return [True,"x-x-x-x-x-x-x-x-x-x"]
+                print( Back.BLUE +  Fore.BLACK +"Flask 1.0")
+                #print("Thunder 0.0.1")
+                return [True, Fore.YELLOW + "Thunder 0.0.1"]
             elif stack[1][1][2]=="--help":
                 print("INSTRUCTIONS...")
                 return [True,"x-x-x-x-x-x-x-x-x-x"]
             elif stack[1][1][2]=="--h":
                 print("INSTRUCTIONS...")
+                helper = os.getcwd() + "\\temp\\help\\instruccion.md"
+                file = open(helper, "r")
+                for line in file:
+                    print Fore.BLUE + line
                 return [True,"x-x-x-x-x-x-x-x-x-x"]
             else:
-                return [True,"Unknow parameter"]
+                return [True, Fore.RED + "Unknow parameter"]
         elif stack[0]=='kdp':
             if stack[1][2][2]=="--help":
                 print("INSTRUCTIONS...")
+                helper = os.getcwd() + "\\temp\\help\\instruccion.md"
+                file = open(helper, "r")
+                for line in file:
+                    print Fore.BLUE + line
                 return [True,"x-x-x-x-x-x-x-x-x-x"]
             elif stack[1][2][2]=="--h":
                 print("INSTRUCTIONS...")
