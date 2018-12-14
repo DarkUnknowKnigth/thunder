@@ -92,7 +92,7 @@ class semantic:
                     f.write(default_index)
                     f.close()
                     os.chdir(current)
-                    return [True,Fore.WHITE+"Initializing..."]
+                    return [True,Fore.YELLOW+"Initializing..."]
                 else:
                     os.system("dir")
                     return [True,Fore.RED+"Can not find your config file"]
